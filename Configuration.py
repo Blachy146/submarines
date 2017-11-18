@@ -9,3 +9,4 @@ class Configuration:
         self.ship_y = 200
         self.bomb_coord_increase = 1
         self.ship_coord_increase = 3
+        self.submarine_increase = 2

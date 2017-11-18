@@ -6,18 +6,11 @@ class Ship:
         self.x = x
         self.y = y
         self.width = 50
-        self.high = 20
-        self.prev_x = x
-        self.prev_y = y
+        self.high = 50
         self.bombs = 10
+        self.ship_image = pygame.image.load("/home/bmalecki/Downloads/ship.png")
+        self.ship_image = pygame.transform.scale(self.ship_image, (self.width, self.high))
 
     def draw(self, window):
-        current_coords = (self.x, self.y, self.width, self.high)
-        color = (153, 153, 0)
-        pygame.draw.rect(window, color, current_coords)
-
-    def draw_prev(self, window):
-        prev_coords = (self.prev_x, self.prev_y, self.width, self.high)
-        black = (0, 0, 0)
-        pygame.draw.rect(window, black, prev_coords)
+        window.blit(self.ship_image, (self.x, self.y))
 
