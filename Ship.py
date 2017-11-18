@@ -8,13 +8,16 @@ class Ship:
         self.width = 50
         self.high = 20
         self.prev_x = x
-        self.prev_y = x
+        self.prev_y = y
+        self.bombs = 10
 
     def draw(self, window):
         current_coords = (self.x, self.y, self.width, self.high)
+        color = (153, 153, 0)
+        pygame.draw.rect(window, color, current_coords)
+
+    def draw_prev(self, window):
         prev_coords = (self.prev_x, self.prev_y, self.width, self.high)
-        grey = (100, 100, 100)
         black = (0, 0, 0)
         pygame.draw.rect(window, black, prev_coords)
-        pygame.draw.rect(window, grey, current_coords)
 
