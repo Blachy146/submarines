@@ -16,6 +16,6 @@ class Bomb:
         radius = 5
         red = (240, 15, 20)
         black = (0, 0, 0)
-        pygame.draw.circle(window, red, current_coords, radius)
         pygame.draw.circle(window, black, prev_coords, radius)
+        pygame.draw.circle(window, red, current_coords, radius)
 

@@ -2,31 +2,26 @@ import pygame
 import pygame.locals
 import time
 import sys
-import os
 import Ship
 import Bomb
+import Configuration
 
 
-def init_and_create_window():
+def init_and_create_window(configuration):
     pygame.init()
-    return pygame.display.set_mode((640, 640))
+    return pygame.display.set_mode((configuration.window_high, configuration.window_width))
 
 
-def draw_circle(window, x, y, radius):
-    pygame.draw.circle(window, (255, 255, 255), (x, y), radius, 2)
-
-
-window = init_and_create_window()
-
-ship = Ship.Ship(300, 300)
+configuration = Configuration.Configuration()
+window = init_and_create_window(configuration)
 
 move_left = False
 move_right = False
-
+ship = Ship.Ship(300, 300)
 bombs = []
 
 while True:
-    time.sleep(0.03)
+    time.sleep(configuration.sleep_time)
     for event in pygame.event.get():
         if event.type == pygame.locals.QUIT:
             sys.exit(0)
@@ -44,16 +39,16 @@ while True:
                 move_right = False
     if move_left:
         ship.prev_x = ship.x
-        ship.x -= 10
+        ship.x -= configuration.ship_coord_increase
     elif move_right:
         ship.prev_x = ship.x
-        ship.x += 10
+        ship.x += configuration.ship_coord_increase
 
-    bombs = [bomb for bomb in bombs if bomb.y < 641]
+    bombs = [bomb for bomb in bombs if bomb.y < configuration.window_high+1]
 
     for bomb in bombs:
         bomb.prev_y = bomb.y
-        bomb.y += 1
+        bomb.y += configuration.bomb_coord_increase
         bomb.draw(window)
 
     ship.draw(window)
